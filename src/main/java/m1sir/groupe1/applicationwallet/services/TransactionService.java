@@ -6,6 +6,7 @@ import m1sir.groupe1.applicationwallet.enums.Statut;
 import m1sir.groupe1.applicationwallet.repository.CompteRepository;
 import m1sir.groupe1.applicationwallet.repository.TransactionRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.Optional;
@@ -21,6 +22,7 @@ public class TransactionService {
         this.compteRepository = compteRepository;
     }
 
+    @Transactional
     public String transfert(int idCompteSource, int idCompteDestination, double montant) {
 
         String response = "Transaction reussie";
