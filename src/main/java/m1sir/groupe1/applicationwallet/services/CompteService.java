@@ -4,6 +4,8 @@ import m1sir.groupe1.applicationwallet.entite.Client;
 import m1sir.groupe1.applicationwallet.entite.Compte;
 import m1sir.groupe1.applicationwallet.repository.CompteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -19,11 +21,11 @@ public class CompteService {
         this.clientService = clientService;
     }
 
-    public void creer(Compte compte) {
-        Client client=this.clientService.lireOUCreer(compte.getClient());
-        compte.setClient(client);
-
-        this.compteRepository.save(compte);
+    public ResponseEntity<Compte> creer(Compte compte) {
+       Client client=this.clientService.lireOUCreer(compte.getClient());
+       compte.setClient(client);
+       Compte compteCree = this.compteRepository.save(compte);
+       return ResponseEntity.status(HttpStatus.CREATED).body(compteCree);
     }
 
     public Compte lire(int id) {
