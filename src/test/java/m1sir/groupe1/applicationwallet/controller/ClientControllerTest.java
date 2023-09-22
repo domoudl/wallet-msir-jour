@@ -111,5 +111,21 @@ public class ClientControllerTest {
         assertEquals("Authentification échouée", response.getBody());
     }
 
+    @Test
+    public void testLoginInvalidPassword() {
+        String email = "azou@gmail.com";
+        String motDePasse = "motdepasse1";
+        Client mockClient = new Client(1, "assane", "doum", email, motDePasse);
+        when(clientService.findByEmail(email)).thenReturn(mockClient);
 
+        LoginRequest loginRequest = new LoginRequest(email, "wrong_password");
+        ResponseEntity<String> response = clientController.login(loginRequest);
+
+        assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
+        assertEquals("Authentification échouée", response.getBody());
+    }
 }
+
+
+
+
