@@ -4,9 +4,11 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import m1sir.groupe1.applicationwallet.entite.Client;
 import m1sir.groupe1.applicationwallet.entite.Compte;
+import m1sir.groupe1.applicationwallet.request.LoginRequest;
 import m1sir.groupe1.applicationwallet.services.ClientService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,12 +21,6 @@ public class ClientController {
 
     public ClientController(ClientService clientService) {
         this.clientService = clientService;
-    }
-    @ResponseStatus(value = HttpStatus.CREATED)
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public  void creer(@RequestBody Client client){
-        this.clientService.creer(client);
-
     }
 
     @Operation(
@@ -44,6 +40,22 @@ public class ClientController {
     @GetMapping("/all")
     public List<Client> getAllClients(){
          return clientService.getClients();
+    }
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+        String email = loginRequest.getEmail();
+        String motDePasse = loginRequest.getMotDePasse();
+
+        Client client = clientService.findByEmail(email);
+
+        if (client != null && client.getEmail().equals(email)&&client.getMotDePasse().equals(motDePasse)) {
+
+            return ResponseEntity.ok("Authentification réussie");
+        }
+        else {
+
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Authentification échouée");
+        }
     }
 
 }

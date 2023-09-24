@@ -1,4 +1,4 @@
-package m1sir.groupe1.applicationwallet.steep;
+package m1sir.groupe1.applicationwallet.cucumber.steep;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;

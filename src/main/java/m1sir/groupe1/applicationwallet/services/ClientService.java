@@ -34,7 +34,8 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
-    public void creer(Client client) {
-        this.clientRepository.save(client);
+
+    public Client findByEmail(String email) {
+        return  this.clientRepository.findByEmail(email);
     }
 }

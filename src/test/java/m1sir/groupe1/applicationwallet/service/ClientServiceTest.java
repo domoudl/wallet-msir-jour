@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -42,5 +43,29 @@ public class ClientServiceTest {
         when(clientRepository.save(client)).thenReturn(client);
         Client result = clientService.lireOUCreer(client);
         assertEquals(client, result);
+    }
+    @Test
+    void testFindUserByUserId() {
+        int userId = 1;
+        Client client = new Client();
+        client.setUserID(userId);
+        when(clientRepository.findByUserID(userId)).thenReturn(client);
+
+        Client result = clientService.findUserByUserId(userId);
+
+        assertEquals(client, result);
+    }
+
+    @Test
+    void testGetClients() {
+        List<Client> clients = List.of(
+                new Client(), new Client(), new Client()
+        );
+        when(clientRepository.findAll()).thenReturn(clients);
+
+        List<Client> result = clientService.getClients();
+
+        assertEquals(clients.size(), result.size());
+        assertEquals(clients, result);
     }
 }

@@ -24,9 +24,8 @@ public class CompteController {
     )
     @ResponseStatus(value = HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public  void creer(@RequestBody Compte compte){
-        this.compteService.creer(compte);
-
+    public ResponseEntity<Compte> creer(@RequestBody Compte compte){
+        return this.compteService.creer(compte);
     }
     @Operation(
             description = "Gives the amount of an account from Id",

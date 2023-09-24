@@ -1,18 +1,15 @@
-package m1sir.groupe1.applicationwallet.steep;
-
+package m1sir.groupe1.applicationwallet.cucumber.steep;
 
 
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import m1sir.groupe1.applicationwallet.entite.Client;
 import m1sir.groupe1.applicationwallet.services.ClientService;
 import org.junit.Assert;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 
 public class Cllientstep {
     private int userId;
