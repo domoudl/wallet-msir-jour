@@ -41,6 +41,11 @@ public class ClientController {
     public List<Client> getAllClients(){
          return clientService.getClients();
     }
+
+    @Operation(
+            description = "Allow the customer to log into their accounts",
+            summary = "For Login"
+    )
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
         String email = loginRequest.getEmail();

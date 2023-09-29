@@ -1,6 +1,7 @@
 package m1sir.groupe1.applicationwallet.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import m1sir.groupe1.applicationwallet.entite.Compte;
 import m1sir.groupe1.applicationwallet.services.CompteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@Tag(name = "Compte")
 public class CompteController {
     @Autowired
     private CompteService compteService;
