@@ -25,7 +25,7 @@ public class CompteController {
             summary = "Create an account"
     )
     @ResponseStatus(value = HttpStatus.CREATED)
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "compte")
     public ResponseEntity<Compte> creer(@RequestBody Compte compte){
         return this.compteService.creer(compte);
     }
