@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: my-app-container
-          image: ucadsir/wallet-msir-jour-group1
+          image: ucadsir/wallet-msir-jour-group1:v2
           ports:
             - containerPort: 7070
           env:
